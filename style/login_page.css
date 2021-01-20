@@ -1,0 +1,40 @@
+#login-page{
+    width: 30%;
+    margin: auto;
+    display: grid;
+    padding: 20px;
+}
+label{
+    padding: 5px;
+}
+#email,#password{
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#login-button{
+    width: 200px;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--secondary);
+    background-color: var(--primary);
+    margin: auto;
+    text-align: center;
+}
+
+#signup-div{
+    margin: auto;
+    display: flex;
+}
+
+#signup-link{
+    color: blue;
+    padding: 0px 10px;
+    cursor: pointer;
+}

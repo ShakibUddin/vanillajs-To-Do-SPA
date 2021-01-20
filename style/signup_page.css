@@ -1,0 +1,48 @@
+#signup-page{
+    width: 30%;
+    margin: auto;
+    display: grid;
+}
+label{
+    padding: 5px;
+}
+#username,#email,#password,#confirm-password{
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    font-size: 15px;
+}
+
+#terms-conditions{
+    display: flex;
+    padding: 10px 0px;
+}
+
+#terms-conditions-text{
+    margin: 0;
+    width: 10%;
+}
+
+#create-account{
+    width: 200px;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--secondary);
+    background-color: var(--primary);
+    margin: auto;
+    text-align: center;
+}
+
+#login-div{
+    margin: auto;
+    display: flex;
+}
+
+#login-link{
+    color: blue;
+    padding: 0px 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,41 @@
+#title{
+    font-size: 5vw;
+    font-weight: bolder;
+    color: var(--primary);
+    text-align: center;
+}
+
+#login{
+    width: 40%;
+    font-size: 2vw;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--primary);
+    background-color: var(--secondary);
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#login:hover{
+    cursor: pointer;
+}
+
+#signup{
+    width: 40%;
+    font-size: 2vw;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--secondary);
+    background-color: var(--primary);
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+}
+
+#signup:hover{
+    cursor: pointer;
+}
