@@ -6,6 +6,7 @@ let appContent = document.getElementById("app-content");
 let loggedIn = false;
 export let currentPage = null;
 
+
 if(loggedIn){
 
 }
@@ -22,6 +23,8 @@ export function assignContent(content){
     currentPage = content;
     appContent.appendChild(content);
 }
+
+
 
 
 

@@ -6,8 +6,9 @@
 }
 #login-title{
     color: var(--primary);
-    font-size: 40px;
+    font-size: 20px;
     padding: 10px 0px;
+    font-weight: bolder;
 }
 label{
     padding: 5px;

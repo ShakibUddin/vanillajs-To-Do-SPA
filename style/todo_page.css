@@ -1,0 +1,88 @@
+
+#todo-page{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+#input-div{
+    flex: 2;
+    margin: 10px 0px;
+}
+
+#button-div{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#heading{
+    font-size: 3vw;
+    text-align: center;
+    color: var(--primary);
+    font-weight: bolder;
+}
+
+#todo-name{
+    color: var(--primary);
+    font-size: 20px;
+    padding: 10px 0px;
+}
+label{
+    padding: 10px 0px;
+}
+#todo,#todo-name{
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+#todo{
+    width: 100%;
+}
+#submit-button{
+    width: 200px;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--secondary);
+    background-color: var(--primary);
+    margin: 10px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#submit-button:hover{
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--primary);
+    background-color: var(--secondary);
+}
+
+#cancel-button{
+    width: 200px;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--primary);
+    background-color: var(--secondary);
+    margin: 10px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#cancel-button:hover{
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--secondary);
+    background-color: var(--primary);
+}
+

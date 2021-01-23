@@ -5,13 +5,14 @@
 }
 #signup-title{
     color: var(--primary);
-    font-size: 40px;
+    font-size: 20px;
+    font-weight: bolder;
     padding: 10px 0px;
 }
 label{
     padding: 5px;
 }
-#username,#email,#password,#confirm-password{
+#firstName,#lastName,#email,#password,#confirm-password{
     border-color: var(--primary);
     border-width: 2px;
     border-style: solid;

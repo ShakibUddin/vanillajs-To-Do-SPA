@@ -1,6 +1,6 @@
 import {assignContent} from "/javascript/app_content.js";
 import {signupPage} from "/javascript/signup_page.js";
-import {homePage} from "/javascript/home_page.js";
+import {homePage,displayCurrentTodos} from "/javascript/home_page.js";
 import {myStorage,setCurrentUser} from "/javascript/storage.js";
 export let loginPage = document.createElement("div");
 
@@ -97,12 +97,12 @@ function loadHomeContent(content){
 
 function checkCredentials(userEmail,userPassword){
     for (let i = 0; i < myStorage.length; ++i) {
-        const storedUsername = JSON.parse(myStorage.getItem(myStorage.key(i)))["username"];
         const storedEmail = JSON.parse(myStorage.getItem(myStorage.key(i)))["email"];
         const storedPassword = JSON.parse(myStorage.getItem(myStorage.key(i)))["password"];
         if (storedEmail === userEmail && storedPassword === userPassword) {
             //getting user info for session
-            setCurrentUser(JSON.parse(myStorage.getItem(storedUsername)));
+            setCurrentUser(myStorage.getItem(storedEmail));
+            displayCurrentTodos();
             return true;
         }
     }
