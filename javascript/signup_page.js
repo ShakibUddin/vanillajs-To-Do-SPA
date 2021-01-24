@@ -149,6 +149,10 @@ function validateSignUpData() {
 function setError(message) {
     errorDiv.innerText = message;
     errorDiv.classList.add("error-div");
+    errorDiv.style.visibility = "visible";
+    setTimeout(function() {
+        errorDiv.style.visibility = "hidden";
+      }, 3000); // 3 second
 }
 
 
@@ -161,8 +165,6 @@ function loadHomeContent() {
         'todo': null,
     };
     addUser(user);
-    setCurrentUser(user);
-    displayCurrentTodos();
     signupPage.parentNode.removeChild(signupPage);
     assignContent(loginPage);
 }

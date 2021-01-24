@@ -83,6 +83,8 @@ function addToDo(){
     }
     else {
         saveToDoInDatabase(todoName.value,todo.value);
+        todo.value = "";
+        todoName.value = "";
         loadHomeContent(homePage);
     }
 }
@@ -94,11 +96,8 @@ function loadHomeContent(){
 }
 
 function checkToDoTitleAvailability(title){
-    let currentUserToDo = JSON.parse(getCurrentUser())["todo"];
-    console.log("current todos");
-    for(let key in currentUserToDo){
-        console.log(currentUserToDo[key]);
-    }
+    let currentUserToDo = getCurrentUser()["todo"];
+    console.log(typeof currentUserToDo);
     if(currentUserToDo === null || currentUserToDo[title] === undefined){
         return true;
     }
@@ -108,16 +107,22 @@ function checkToDoTitleAvailability(title){
 function saveToDoInDatabase(title,todo){
     let currentUser = getCurrentUser();
     console.log("current user data: "+currentUser);
-    if(JSON.parse(currentUser)['todo'] === null){
+    if(currentUser['todo'] === null){
         let newCurrentUserToDo = {
             
         };
-        newCurrentUserToDo[title] = todo;
+        newCurrentUserToDo[title] = {
+            description: todo,
+            complete: false
+        };
         updateCurrentUserToDo(newCurrentUserToDo);
     }
     else{
-        let oldToDo = JSON.parse(currentUser)['todo'];
-        oldToDo[title] = todo;
+        let oldToDo = currentUser['todo'];
+        oldToDo[title] = {
+            description: todo,
+            complete: false
+        };
         updateCurrentUserToDo(oldToDo);
     }
 
@@ -126,4 +131,8 @@ function saveToDoInDatabase(title,todo){
 function setError(message) {
     errorDiv.innerText = message;
     errorDiv.classList.add("error-div");
+    errorDiv.style.visibility = "visible";
+    setTimeout(function() {
+        errorDiv.style.visibility = "hidden";
+      }, 3000); // 3 second
 }
