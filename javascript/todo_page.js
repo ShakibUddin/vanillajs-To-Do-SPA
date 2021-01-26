@@ -12,8 +12,10 @@ const todoName = document.createElement("INPUT");
 const todoLabel = document.createElement("LABEL");
 const todo = document.createElement("TEXTAREA");
 const buttionDiv = document.createElement("div");
-const submitButton = document.createElement("div");
+const addButton = document.createElement("div");
+const saveButton = document.createElement("div");
 const cancelButton = document.createElement("div");
+const listDiv = document.createElement("div");
 
 inputDiv.id = "input-div";
 todoPage.id = "todo-page";
@@ -21,8 +23,10 @@ heading.id = "heading";
 todoName.id = "todo-name";
 todo.id = "todo";
 buttionDiv.id = "button-div";
-submitButton.id = "submit-button";
+addButton.id = "add-button";
+saveButton.id = "save-button";
 cancelButton.id = "cancel-button";
+listDiv.id = "list-div";
 
 todoName.setAttribute("name","todoName");
 todo.setAttribute("name","todo");
@@ -33,7 +37,8 @@ todoLabel.setAttribute("for","todo");
 heading.innerHTML = "<p>Add a new To Do<p>";
 todoNameLabel.innerText = "ToDo Title:";
 todoLabel.innerText = "ToDo:";
-submitButton.innerHTML = "<p>SUBMIT</p>";
+addButton.innerHTML = "<p>ADD TODO</p>";
+saveButton.innerHTML = "<p>SAVE</p>";
 cancelButton.innerHTML = "<p>CANCEL</p>";
 
 todoName.setAttribute("type","text");
@@ -45,13 +50,8 @@ todo.setAttribute("maxLength","500");
 todoName.setAttribute("placeholder","Enter a title");
 todo.setAttribute("placeholder","Enter a todo");
 
-heading.innerHTML = "<p>Add a new To Do</p>";
-todoLabel.innerHTML = "<p>To Do:</p>";
-todoNameLabel.innerHTML = "<p>Title:</p>";
-submitButton.innerHTML = "<p>SUBMIT</p>";
-cancelButton.innerHTML = "<p>CANCEL</p>";
-
-submitButton.addEventListener("click",addToDo);
+addButton.addEventListener("click",addToDo);
+saveButton.addEventListener("click",loadHomeContent);
 cancelButton.addEventListener("click",loadHomeContent);
 
 inputDiv.appendChild(heading);
@@ -61,7 +61,8 @@ inputDiv.appendChild(todoName);
 inputDiv.appendChild(todoLabel);
 inputDiv.appendChild(todo);
 
-buttionDiv.appendChild(submitButton);
+buttionDiv.appendChild(addButton);
+buttionDiv.appendChild(saveButton);
 buttionDiv.appendChild(cancelButton);
 
 addChild(inputDiv);
@@ -82,7 +83,7 @@ function addToDo(){
         setError("Please enter something in todo.");
     }
     else {
-        saveToDoInDatabase(todoName.value,todo.value);
+        saveButtonToDoInDatabase(todoName.value,todo.value);
         todo.value = "";
         todoName.value = "";
         loadHomeContent(homePage);
@@ -104,7 +105,7 @@ function checkToDoTitleAvailability(title){
     return false;
 }
 
-function saveToDoInDatabase(title,todo){
+function saveButtonToDoInDatabase(title,todo){
     let currentUser = getCurrentUser();
     console.log("current user data: "+currentUser);
     if(currentUser['todo'] === null){
@@ -135,4 +136,8 @@ function setError(message) {
     setTimeout(function() {
         errorDiv.style.visibility = "hidden";
       }, 3000); // 3 second
+}
+
+export function loadListDiv(){
+    
 }

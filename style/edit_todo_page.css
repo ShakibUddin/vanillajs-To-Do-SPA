@@ -1,31 +1,31 @@
 
-#todo-page{
-    display: block;
+#edit-todo-page{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
     margin: auto;
-    width: 70%;
 }
 
-#input-div{
+#edit-input-div{
     flex: 2;
-    display: grid;
     margin: 10px 0px;
 }
 
-#button-div{
+#edit-button-div{
     display: flex;
     flex: 1;
     flex-wrap: wrap;
     flex-direction: row;
 }
 
-#heading{
+#edit-heading{
     font-size: 3vw;
     text-align: center;
     color: var(--primary);
     font-weight: bolder;
 }
 
-#todo-name{
+#edit-todo-name{
     color: var(--primary);
     font-size: 20px;
     padding: 10px 0px;
@@ -33,7 +33,7 @@
 label{
     padding: 10px 0px;
 }
-#todo,#todo-name{
+#edit-todo,#edit-todo-name{
     border-color: var(--primary);
     border-width: 2px;
     border-style: solid;
@@ -41,42 +41,32 @@ label{
     font-size: 15px;
     margin-bottom: 10px;
 }
-#add-button{
-    width: 200px;
-    font-size: 15px;
-    border-color: var(--tertiary);
-    border-width: 2px;
-    border-style: solid;
-    color: var(--buttonTextColor);
-    background-color: var(--tertiary);
-    margin-right: 10px;
-    text-align: center;
-    cursor: pointer;
+#edit-todo{
+    width: 100%;
 }
-
-#save-button{
+#edit-submit-button{
     width: 200px;
     font-size: 15px;
     border-color: var(--primary);
     border-width: 2px;
     border-style: solid;
-    color: var(--buttonTextColor);
+    color: var(--secondary);
     background-color: var(--primary);
-    margin-right: 10px;
+    margin: 10px 10px;
     text-align: center;
     cursor: pointer;
 }
 
 
-#cancel-button{
+#edit-cancel-button{
     width: 200px;
     font-size: 15px;
-    border-color: var(--secondary);
+    border-color: var(--primary);
     border-width: 2px;
     border-style: solid;
-    color: var(--buttonTextColor);
+    color: var(--primary);
     background-color: var(--secondary);
-    margin-right: 10px;
+    margin: 10px 10px;
     text-align: center;
     cursor: pointer;
 }

@@ -1,9 +1,9 @@
-#signup-page{
-    width: 30%;
+#account-settings-page{
+    width: 50%;
     margin: auto;
     display: grid;
 }
-#signup-title{
+#account-settings-title{
     color: var(--primary);
     font-size: 20px;
     font-weight: bolder;
@@ -12,7 +12,7 @@
 label{
     padding: 5px;
 }
-#firstName,#lastName,#signup-email,#signup-password,#confirm-password{
+#firstName,#lastName,#account-email,#account-password,#confirm-password{
     border-color: var(--primary);
     border-width: 2px;
     border-style: solid;
@@ -20,18 +20,14 @@ label{
     font-size: 15px;
 }
 
-#terms-conditions{
-    display: flex;
-    padding: 10px 0px;
+#button-div{
+    width: 100%;
+    display: inline-block;
+    margin-top: 10px;
 }
 
-#terms-conditions-text{
-    margin: 0;
-    width: 10%;
-}
-
-#create-account{
-    width: 200px;
+#save-changes-button{
+    width: 40%;
     font-size: 15px;
     border-color: var(--primary);
     border-width: 2px;
@@ -43,14 +39,16 @@ label{
     cursor: pointer;
 }
 
-#login-div{
+#account-settings-cancel-button{
+    width: 40%;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--primary);
+    background-color: var(--secondary);
     margin: auto;
-    display: flex;
-}
-
-#login-link{
-    color: blue;
-    padding: 0px 10px;
+    text-align: center;
     cursor: pointer;
 }
 

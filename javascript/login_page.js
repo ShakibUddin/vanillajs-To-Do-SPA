@@ -1,6 +1,6 @@
 import {assignContent} from "/javascript/app_content.js";
 import {signupPage} from "/javascript/signup_page.js";
-import {homePage,displayCurrentTodos} from "/javascript/home_page.js";
+import {homePage,displayCurrentTodos,displayNavItems} from "/javascript/home_page.js";
 import {myStorage,setCurrentUser,getUser} from "/javascript/storage.js";
 export let loginPage = document.createElement("div");
 
@@ -101,8 +101,9 @@ function checkCredentials(userEmail,userPassword){
         const storedPassword = getUser(myStorage.key(i))["password"];
         if (storedEmail === userEmail && storedPassword === userPassword) {
             //getting user info for session
-            console.log(typeof getUser(storedEmail));
+            console.log("setting current user email: "+getUser(storedEmail).email+", name: "+getUser(storedEmail).firstName);
             setCurrentUser(getUser(storedEmail));
+            displayNavItems();
             displayCurrentTodos();
             return true;
         }

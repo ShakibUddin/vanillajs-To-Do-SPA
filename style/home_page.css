@@ -1,10 +1,39 @@
+#home-page{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+#nav-area{
+    background-color: white;
+    flex: 1;
+    margin: 0px 10px;
+}
+
+#content-area{
+    background-color: white;
+    color: var(--primary);
+    padding: 20px 10px;
+    width: 98%;
+    align-items: center;
+    flex: 2;
+}
+#name-div{
+    font-size: 25px;
+    font-weight: bolder;
+    color: var(--primary);
+    float: left;
+}
+#home-button-div{
+    display: inline;
+    float: right;
+}
 #create-todo{
     background-color: green;
     color: white;
     border: green solid 2px;
     font-size: 15px;
     text-align: center;
-    padding: 0px 10px;
+    padding: 5px;
     margin: 10px;
     float: right;
     cursor: pointer;
@@ -22,7 +51,7 @@
     border: var(--secondary) solid 2px;
     font-size: 15px;
     text-align: center;
-    padding: 0px 10px;
+    padding: 5px;
     margin: 10px;
     float: right;
     cursor: pointer;
@@ -40,7 +69,7 @@
     border: red solid 2px;
     font-size: 15px;
     text-align: center;
-    padding: 0px 10px;
+    padding: 5px;
     margin: 10px;
     float: right;
     cursor: pointer;
@@ -50,28 +79,6 @@
     background-color: white;
     color: red;
     border: red solid 2px;
-}
-
-#home-page{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-#nav-area{
-    background-color: white;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row-reverse;
-    flex: 1;
-}
-
-#content-area{
-    background-color: white;
-    color: var(--primary);
-    padding: 20px;
-    width: 97%;
-    align-items: center;
-    flex: 2;
 }
 
 table,td, th {

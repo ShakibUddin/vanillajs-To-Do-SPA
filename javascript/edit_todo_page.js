@@ -17,26 +17,20 @@ const buttionDiv = document.createElement("div");
 const submitButton = document.createElement("div");
 const cancelButton = document.createElement("div");
 
-inputDiv.id = "input-div";
-editToDoPage.id = "todo-page";
-heading.id = "heading";
-todoName.id = "todo-name";
-todo.id = "todo";
-buttionDiv.id = "button-div";
-submitButton.id = "submit-button";
-cancelButton.id = "cancel-button";
+inputDiv.id = "edit-input-div";
+editToDoPage.id = "edit-todo-page";
+heading.id = "edit-heading";
+todoName.id = "edit-todo-name";
+todo.id = "edit-todo";
+buttionDiv.id = "edit-button-div";
+submitButton.id = "edit-submit-button";
+cancelButton.id = "edit-cancel-button";
 
 todoName.setAttribute("name", "todoName");
 todo.setAttribute("name", "todo");
 
 todoNameLabel.setAttribute("for", "todoName");
 todoLabel.setAttribute("for", "todo");
-
-heading.innerHTML = "<p>Edit To Do<p>";
-todoNameLabel.innerText = "ToDo Title:";
-todoLabel.innerText = "ToDo:";
-submitButton.innerHTML = "<p>SUBMIT</p>";
-cancelButton.innerHTML = "<p>CANCEL</p>";
 
 todoName.setAttribute("type", "text");
 
@@ -47,7 +41,7 @@ todo.setAttribute("maxLength", "500");
 todoName.setAttribute("placeholder", "Enter a title");
 todo.setAttribute("placeholder", "Enter a todo");
 
-heading.innerHTML = "<p>Add a new To Do</p>";
+heading.innerHTML = "<p>Edit To Do</p>";
 todoLabel.innerHTML = "<p>To Do:</p>";
 todoNameLabel.innerHTML = "<p>Title:</p>";
 submitButton.innerHTML = "<p>SUBMIT</p>";

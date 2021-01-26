@@ -1,20 +1,27 @@
-import {getCurrentUser} from "/javascript/storage.js";
+import { getCurrentUser } from "/javascript/storage.js";
 import { assignContent } from "/javascript/app_content.js";
 import { todoPage } from "/javascript/todo_Page.js";
-import { editToDoPage,todo,todoName,setPreviousTitle,setPreviousTodo } from "/javascript/edit_todo_Page.js";
+import { editToDoPage, todo, todoName, setPreviousTitle, setPreviousTodo } from "/javascript/edit_todo_Page.js";
 import { loginPage } from "/javascript/login_page.js";
 import { myStorage } from "/javascript/storage.js";
+import { accountSettingsPage,loadCurrentUserData } from "/javascript/account_settings_page.js";
 export const homePage = document.createElement("div");
 
 const navArea = document.createElement("div");
 const contentTable = document.createElement("div");
+const nameDiv = document.createElement("div");
+const buttonDiv = document.createElement("div");
+const fullname = document.createElement("div");
 const createTodo = document.createElement("div");
 const accountSettingsButton = document.createElement("div");
 const logoutButton = document.createElement("div");
 
 homePage.id = "home-page";
+nameDiv.id = "name-div";
+buttonDiv.id = "home-button-div";
 navArea.id = "nav-area";
 contentTable.id = "content-area";
+fullname.id = "fullname";
 createTodo.id = "create-todo";
 accountSettingsButton.id = "account-settings";
 logoutButton.id = "logout-button";
@@ -23,24 +30,19 @@ createTodo.innerHTML = "<p>Add ToDo</p>";
 accountSettingsButton.innerHTML = "<p>Account Settings</p>";
 logoutButton.innerHTML = "<p>Logout</p>";
 
-createTodo.addEventListener("click",loadAddToDoContent);
-logoutButton.addEventListener("click",() => {
+createTodo.addEventListener("click", loadAddToDoContent);
+accountSettingsButton.addEventListener("click",loadAccountSettingsPage);
+logoutButton.addEventListener("click", () => {
     logoutButton.parentNode.parentNode.parentNode.innerHTML = "";
     assignContent(loginPage);
 });
 
-navArea.appendChild(logoutButton);
-navArea.appendChild(accountSettingsButton);
-navArea.appendChild(createTodo);
 
-addChild(navArea);
-addChild(contentTable);
-
-function addChild(child){
+function addChild(child) {
     homePage.appendChild(child);
 }
 
-export function displayCurrentTodos(){
+export function displayCurrentTodos() {
     contentTable.innerHTML = "";
     console.log(typeof getCurrentUser());
     const toDos = getCurrentUser()["todo"];
@@ -51,11 +53,6 @@ export function displayCurrentTodos(){
     const tableRow1Heading3 = document.createElement("th");
     const todoHeading = document.createElement("th");
 
-    console.log("current todos");
-    for(let key in toDos){
-        console.log(toDos[key]);
-    }
-    
     tableRow1Heading1.id = "table-row1-heading1";
     tableRow1Heading2.id = "table-row1-heading2";
     tableRow1Heading3.id = "table-row1-heading3";
@@ -74,7 +71,7 @@ export function displayCurrentTodos(){
 
     table.appendChild(tableRow1);
 
-    for(let key in toDos){
+    for (let key in toDos) {
         const tableRow = document.createElement("tr");
         const tableRowData1 = document.createElement("td");
         const tableRowData2 = document.createElement("td");
@@ -82,21 +79,21 @@ export function displayCurrentTodos(){
 
         const checkBox = document.createElement("input");
         checkBox.id = "complete";
-        checkBox.setAttribute("type","checkbox");
+        checkBox.setAttribute("type", "checkbox");
 
         tableRow.id = "table-row";
         tableRowData1.id = "table-row-data1";
         tableRowData2.id = "table-row-data2";
         tableRowData3.id = "table-row-data3";
 
-        if(toDos[key].complete){
+        if (toDos[key].complete) {
             checkBox.checked = true;
         }
-        else{
+        else {
             checkBox.checked = false;
         }
 
-        checkBox.addEventListener("click",() => {
+        checkBox.addEventListener("click", () => {
             let newToDoObject = toDos;
             newToDoObject[key].complete ? newToDoObject[key].complete = false : newToDoObject[key].complete = true;
             let updatedUser = {
@@ -106,8 +103,8 @@ export function displayCurrentTodos(){
                 'password': getCurrentUser()["password"],
                 'todo': newToDoObject,
             };
-            myStorage.setItem("currentUser",JSON.stringify(updatedUser));
-            myStorage.setItem(updatedUser["email"],JSON.stringify(updatedUser));  
+            myStorage.setItem("currentUser", JSON.stringify(updatedUser));
+            myStorage.setItem(updatedUser["email"], JSON.stringify(updatedUser));
         });
 
         tableRowData1.innerHTML = `${key}`;
@@ -118,21 +115,39 @@ export function displayCurrentTodos(){
         tableRow.appendChild(tableRowData2);
         tableRow.appendChild(tableRowData3);
 
-        tableRowData1.addEventListener("click",()=>loadEditToDoPage(key,toDos[key].description));
-        tableRowData2.addEventListener("click",()=>loadEditToDoPage(key,toDos[key].description));
+        tableRowData1.addEventListener("click", () => loadEditToDoPage(key, toDos[key].description));
+        tableRowData2.addEventListener("click", () => loadEditToDoPage(key, toDos[key].description));
 
         table.appendChild(tableRow);
     }
 
     contentTable.appendChild(table);
+    addChild(contentTable);
 }
 
-function loadAddToDoContent(){
+export function displayNavItems() {
+    fullname.innerHTML = `<p>${getCurrentUser().firstName + " " + getCurrentUser().lastName}</p>`;
+    nameDiv.appendChild(fullname);
+    buttonDiv.appendChild(logoutButton);
+    buttonDiv.appendChild(accountSettingsButton);
+    buttonDiv.appendChild(createTodo);
+    navArea.appendChild(nameDiv);
+    navArea.appendChild(buttonDiv);
+    addChild(navArea);
+}
+
+function loadAddToDoContent() {
     homePage.parentNode.removeChild(homePage);
     assignContent(todoPage);
 }
 
-function loadEditToDoPage(clickedTitle,clickedTodo){
+function loadAccountSettingsPage() {
+    loadCurrentUserData();
+    homePage.parentNode.removeChild(homePage);
+    assignContent(accountSettingsPage);
+}
+
+function loadEditToDoPage(clickedTitle, clickedTodo) {
     todoName.value = clickedTitle;
     setPreviousTitle(clickedTitle);
     setPreviousTodo(clickedTodo);

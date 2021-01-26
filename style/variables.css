@@ -1,6 +1,7 @@
 :root {
-    --primary: #262f46;
-    --secondary: white; 
-    --tertiary:  #38425e; 
+    --primary: #3D4C53;
+    --secondary: #E6772E; 
+    --tertiary:  #4DB3B3; 
+    --buttonTextColor: white; 
     --black: #000000;
 }
