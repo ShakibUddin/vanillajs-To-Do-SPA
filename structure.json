@@ -1,0 +1,24 @@
+{
+    "firstName": "Sakib",
+    "lastName": "Uddin",
+    "email": "sakib@gmail.com",
+    "password": "123",
+    "todo": {
+        "one": [
+            {
+                "description": "Title one, Task 1",
+                "complete": false
+            },
+            {
+                "description": "Title one, Task 2",
+                "complete": false
+            }
+        ],
+        "two": [
+            {
+                "description": "Task two, Task 1",
+                "complete": true
+            }
+        ]
+    }
+}

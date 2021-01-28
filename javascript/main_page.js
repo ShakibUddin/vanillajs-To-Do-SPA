@@ -20,14 +20,14 @@ mainPage.appendChild(title);
 mainPage.appendChild(loginButton);
 mainPage.appendChild(signupButton);
 
-loginButton.addEventListener("click",loadLoginContent);
-signupButton.addEventListener("click",loadSignupContent);
+loginButton.addEventListener("click", loadLoginContent);
+signupButton.addEventListener("click", loadSignupContent);
 
-function loadLoginContent(e){
+function loadLoginContent(e) {
     assignContent(loginPage);
     mainPage.parentNode.removeChild(mainPage);
 }
-function loadSignupContent(e){
+function loadSignupContent(e) {
     assignContent(signupPage);
     mainPage.parentNode.removeChild(mainPage);
 }

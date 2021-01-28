@@ -28,7 +28,7 @@ label{
     border-color: var(--primary);
     border-width: 2px;
     border-style: solid;
-    color: var(--secondary);
+    color: var(--buttonTextColor);
     background-color: var(--primary);
     margin: auto;
     text-align: center;

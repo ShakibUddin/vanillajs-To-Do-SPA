@@ -28,26 +28,8 @@
     float: right;
 }
 #create-todo{
-    background-color: green;
-    color: white;
-    border: green solid 2px;
-    font-size: 15px;
-    text-align: center;
-    padding: 5px;
-    margin: 10px;
-    float: right;
-    cursor: pointer;
-}
-
-#create-todo:hover{
-    background-color: white;
-    color: green;
-    border: green solid 2px;
-}
-
-#account-settings{
-    background-color: var(--primary);
-    color: var(--secondary);
+    background-color: var(--secondary);
+    color: var(--buttonTextColor);
     border: var(--secondary) solid 2px;
     font-size: 15px;
     text-align: center;
@@ -57,11 +39,19 @@
     cursor: pointer;
 }
 
-#account-settings:hover{
-    background-color: var(--secondary);
-    color: var(--primary);
+
+#account-settings{
+    background-color: var(--primary);
+    color: var(--buttonTextColor);
     border: var(--primary) solid 2px;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    float: right;
+    cursor: pointer;
 }
+
 
 #logout-button{
     background-color: red;
@@ -75,11 +65,6 @@
     cursor: pointer;
 }
 
-#logout-button:hover{
-    background-color: white;
-    color: red;
-    border: red solid 2px;
-}
 
 table,td, th {
     border-color: var(--primary);
@@ -90,8 +75,10 @@ table,td, th {
 #table-row1{
     font-size: 18px;
     background-color: var(--primary);
-    color: var(--secondary);
     font-weight: bolder;
+}
+#table-row1-heading1{
+    color: var(--buttonTextColor);
 }
 #data-table{
     width: 100%;

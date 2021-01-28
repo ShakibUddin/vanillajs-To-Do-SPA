@@ -1,135 +1,105 @@
 import { homePage, displayCurrentTodos, displayNavItems } from "/javascript/home_page.js";
 import { assignContent } from "/javascript/app_content.js";
-import { loginPage } from "/javascript/login_page.js";
-import { addUser, getUser, setCurrentUser } from "/javascript/storage.js";
+import { addUser, getUser, setCurrentUser, getCurrentUser } from "/javascript/storage.js";
+import { myStorage } from "/javascript/storage.js";
+import { accountSettingsPage } from "/javascript/account_settings_page.js";
 
-export let signupPage = document.createElement("div");
-const signupTitle = document.createElement("div");
+export let changeNamePage = document.createElement("div");
+const accountSettingsTitle = document.createElement("div");
 const firstName = document.createElement("INPUT");
 const lastName = document.createElement("INPUT");
-const email = document.createElement("INPUT");
 const password = document.createElement("INPUT");
 const confirmPassword = document.createElement("INPUT");
-const termsAndConditions = document.createElement("div");
-const checkBox = document.createElement("INPUT");
-const checkBoxText = document.createElement("div");
-const createAccount = document.createElement("div");
-const loginText = document.createElement("div");
-const login = document.createElement("div");
+const buttonDiv = document.createElement("div");
+const saveChanges = document.createElement("div");
+const cancel = document.createElement("div");
 const errorDiv = document.createElement("div");
 
 const firstNameLabel = document.createElement("LABEL");
 const lastNameLabel = document.createElement("LABEL");
-const emailLabel = document.createElement("LABEL");
 const passwordLabel = document.createElement("LABEL");
 const confirmPasswordLabel = document.createElement("LABEL");
-const loginLink = document.createElement("div");
 
-signupTitle.id = "signup-title";
-signupPage.id = "signup-page";
+accountSettingsTitle.id = "change-name-title";
+changeNamePage.id = "change-name-page";
 firstName.id = "firstName";
 lastName.id = "lastName";
-email.id = "signup-email";
-password.id = "signup-password";
+password.id = "account-password";
 confirmPassword.id = "confirm-password";
-termsAndConditions.id = "terms-conditions";
-checkBox.id = "terms-conditions-checkbox";
-checkBoxText.id = "terms-conditions-checkbox-text";
-createAccount.id = "create-account";
-login.id = "login-div";
-loginLink.id = "login-link";
+buttonDiv.id = "button-div";
+saveChanges.id = "save-changes-button";
+cancel.id = "account-settings-cancel-button";
+
 
 firstName.setAttribute("name", "firstName");
 lastName.setAttribute("name", "lastName");
-email.setAttribute("name", "email");
 password.setAttribute("name", "password");
 confirmPassword.setAttribute("name", "confirmPassword");
 
 firstName.setAttribute("maxLength", 20);
 lastName.setAttribute("maxLength", 20);
-email.setAttribute("maxLength", 30);
 password.setAttribute("maxLength", 30);
 confirmPassword.setAttribute("maxLength", 30);
 
 firstNameLabel.setAttribute("for", "firstName");
 lastNameLabel.setAttribute("for", "lastName");
-emailLabel.setAttribute("for", "email");
 passwordLabel.setAttribute("for", "password");
 confirmPasswordLabel.setAttribute("for", "confirmPassword");
 
-signupTitle.innerHTML = "<p>SignUp</p>";
+accountSettingsTitle.innerHTML = "<p>Change Name</p>";
 firstNameLabel.innerText = "First Name:";
 lastNameLabel.innerText = "Last Name:";
-emailLabel.innerText = "Email:";
 passwordLabel.innerText = "Password:";
 confirmPasswordLabel.innerText = "Confirm Password:";
-checkBoxText.innerText = "I agree to the Terms of Use";
-createAccount.innerHTML = "<p>CREATE ACCOUNT</p>";
-loginText.innerHTML = "<p>Already have an account?</p?";
-loginLink.innerHTML = "<p>Login</p>";
+saveChanges.innerHTML = "<p>SAVE CHANGES</p>";
+cancel.innerHTML = "<p>CANCEL</p>";
 
 firstName.setAttribute("type", "text");
 lastName.setAttribute("type", "text");
-email.setAttribute("type", "text");
 password.setAttribute("type", "password");
 confirmPassword.setAttribute("type", "password");
 
 firstName.setAttribute("placeholder", "Enter First Name");
 lastName.setAttribute("placeholder", "Enter Last Name");
-email.setAttribute("placeholder", "Enter email");
 password.setAttribute("placeholder", "Enter password");
 confirmPassword.setAttribute("placeholder", "Confirm Password");
-checkBox.setAttribute("type", "checkbox");
 
-createAccount.addEventListener("click", validateSignUpData);
-loginLink.addEventListener("click", loadLoginContent);
+saveChanges.addEventListener("click", validateData);
+cancel.addEventListener("click", loadAccountSettingsContent);
 
-login.style.textAlign = "center";
+buttonDiv.appendChild(saveChanges);
+buttonDiv.appendChild(cancel);
 
-termsAndConditions.appendChild(checkBox);
-termsAndConditions.appendChild(checkBoxText);
-login.appendChild(loginText);
-login.appendChild(loginLink);
-
-addChild(signupTitle);
+addChild(accountSettingsTitle);
 addChild(errorDiv);
 addChild(firstNameLabel);
 addChild(firstName);
 addChild(lastNameLabel);
 addChild(lastName);
-addChild(emailLabel);
-addChild(email);
 addChild(passwordLabel);
 addChild(password);
 addChild(confirmPasswordLabel);
 addChild(confirmPassword);
-addChild(termsAndConditions);
-addChild(createAccount);
-addChild(login);
+addChild(buttonDiv);
+
 
 export function addChild(content) {
-    signupPage.appendChild(content);
+    changeNamePage.appendChild(content);
 }
 
-function loadLoginContent(content) {
+function loadAccountSettingsContent(content) {
     errorDiv.innerHTML = "";
     errorDiv.style.padding = "0px";
-    signupPage.parentNode.removeChild(signupPage);
-    assignContent(loginPage);
+    changeNamePage.parentNode.removeChild(changeNamePage);
+    assignContent(accountSettingsPage);
 }
 
-function validateSignUpData() {
+function validateData() {
     if (firstName.value.length === 0) {
         setError("Please enter first name.");
     }
     else if (lastName.value.length === 0) {
         setError("Please enter last name.")
-    }
-    else if (email.value.length === 0) {
-        setError("Please enter email.");
-    }
-    else if (getUser(email.value) != null) {
-        setError("There is an account with this email, Login instead!")
     }
     else if (password.value.length === 0) {
         setError("Please enter password.");
@@ -140,11 +110,13 @@ function validateSignUpData() {
     else if (confirmPassword.value !== password.value) {
         setError("passwords don't match.");
     }
-    else if (checkBox.checked === false) {
-        setError("Agree to the Terms of Use.");
+    else if(password.value !== getCurrentUser().password){
+        setError("Incorrect Password");
     }
     else {
-        loadHomeContentAfterSignup();
+        loadHomeContentAfterChanges();
+        password.value = "";
+        confirmPassword.value = "";
     }
 }
 
@@ -159,24 +131,28 @@ function setError(message) {
 }
 
 
-function loadHomeContentAfterSignup() {
+function loadHomeContentAfterChanges() {
+    //updating user data
     let user = {
         'firstName': firstName.value,
         'lastName': lastName.value,
-        'email': email.value,
-        'password': password.value,
-        'todo': null,
+        'email': getCurrentUser().email,
+        'password': getCurrentUser().password,
+        'todo': getCurrentUser().todo,
     };
     addUser(user);
-    setCurrentUser(getUser(email.value));
+    setCurrentUser(getUser(getCurrentUser().email));
     displayNavItems();
     displayCurrentTodos();
-    firstName.value = "";
-    lastName.value = "";
-    email.value = "";
-    password.value = "";
-    confirmPassword.value = "";
-    signupPage.parentNode.removeChild(signupPage);
-    checkBox.checked = false;
+    changeNamePage.parentNode.removeChild(changeNamePage);
     assignContent(homePage);
+}
+
+
+export function loadCurrentUserName() {
+    const user = getCurrentUser();
+    if (user !== null) {
+        firstName.value = user.firstName;
+        lastName.value = user.lastName;
+    }
 }

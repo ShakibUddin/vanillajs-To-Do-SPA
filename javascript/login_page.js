@@ -1,7 +1,7 @@
-import {assignContent} from "/javascript/app_content.js";
-import {signupPage} from "/javascript/signup_page.js";
-import {homePage,displayCurrentTodos,displayNavItems} from "/javascript/home_page.js";
-import {myStorage,setCurrentUser,getUser} from "/javascript/storage.js";
+import { assignContent } from "/javascript/app_content.js";
+import { signupPage } from "/javascript/signup_page.js";
+import { homePage, displayCurrentTodos, displayNavItems } from "/javascript/home_page.js";
+import { myStorage, setCurrentUser, getUser } from "/javascript/storage.js";
 export let loginPage = document.createElement("div");
 
 const errorDiv = document.createElement("div");
@@ -24,11 +24,11 @@ loginButton.id = "login-button";
 signupDiv.id = "signup-div";
 signupLink.id = "signup-link";
 
-email.setAttribute("name","email");
-password.setAttribute("name","password");
+email.setAttribute("name", "email");
+password.setAttribute("name", "password");
 
-emailLabel.setAttribute("for","email");
-passwordLabel.setAttribute("for","password");
+emailLabel.setAttribute("for", "email");
+passwordLabel.setAttribute("for", "password");
 
 loginTitle.innerHTML = "<p>SignIn<p>";
 emailLabel.innerText = "Email:";
@@ -37,17 +37,17 @@ loginButton.innerHTML = "<p>LOGIN</p>";
 signupText.innerHTML = "<p>Don't have an account?</p?";
 signupLink.innerHTML = "<p>Signup</p>";
 
-email.setAttribute("type","email");
-password.setAttribute("type","password");
+email.setAttribute("type", "email");
+password.setAttribute("type", "password");
 
-email.setAttribute("maxLength","40");
-password.setAttribute("maxLength","20");
+email.setAttribute("maxLength", "40");
+password.setAttribute("maxLength", "20");
 
-email.setAttribute("placeholder","Enter email");
-password.setAttribute("placeholder","Enter password");
+email.setAttribute("placeholder", "Enter email");
+password.setAttribute("placeholder", "Enter password");
 
-loginButton.addEventListener("click",validateLoginData);
-signupLink.addEventListener("click",loadSignupContent);
+loginButton.addEventListener("click", validateLoginData);
+signupLink.addEventListener("click", loadSignupContent);
 
 signupDiv.style.textAlign = "center";
 
@@ -64,16 +64,18 @@ addChild(loginButton);
 addChild(signupDiv);
 
 
-export function addChild(content){
+export function addChild(content) {
     loginPage.appendChild(content);
 }
 
-function loadSignupContent(content){
+function loadSignupContent(content) {
+    errorDiv.innerHTML = "";
+    errorDiv.style.padding = "0px";
     loginPage.parentNode.removeChild(loginPage);
     assignContent(signupPage);
 }
 
-function validateLoginData(){
+function validateLoginData() {
     if (email.value.length === 0) {
         setError("Please enter email");
     }
@@ -81,27 +83,30 @@ function validateLoginData(){
         setError("Please enter password");
     }
     else {
-        if(checkCredentials(email.value,password.value)){
+        if (checkCredentials(email.value, password.value)) {
             loadHomeContent(homePage);
         }
-        else{
+        else {
             setError("Invalid Email/Password");
         }
     }
 }
 
-function loadHomeContent(content){
+function loadHomeContent(content) {
+    email.value = "";
+    password.value = "";
+    errorDiv.innerHTML = "";
+    errorDiv.style.padding = "0px";
     loginPage.parentNode.removeChild(loginPage);
     assignContent(content);
 }
 
-function checkCredentials(userEmail,userPassword){
+function checkCredentials(userEmail, userPassword) {
     for (let i = 0; i < myStorage.length; ++i) {
         const storedEmail = getUser(myStorage.key(i))["email"];
         const storedPassword = getUser(myStorage.key(i))["password"];
         if (storedEmail === userEmail && storedPassword === userPassword) {
             //getting user info for session
-            console.log("setting current user email: "+getUser(storedEmail).email+", name: "+getUser(storedEmail).firstName);
             setCurrentUser(getUser(storedEmail));
             displayNavItems();
             displayCurrentTodos();
@@ -112,10 +117,11 @@ function checkCredentials(userEmail,userPassword){
 }
 
 function setError(message) {
+    errorDiv.style.padding = "10px";
     errorDiv.innerText = message;
     errorDiv.classList.add("error-div");
-    errorDiv.style.visibility = "visible";
-    setTimeout(function() {
-        errorDiv.style.visibility = "hidden";
-      }, 3000); // 3 second
+    setTimeout(function () {
+        errorDiv.innerHTML = "";
+        errorDiv.style.padding = "0px";
+    }, 3000);
 }

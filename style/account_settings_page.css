@@ -1,61 +1,60 @@
-#account-settings-page{
-    width: 50%;
+.buttonDiv{
+    width: 20%;
     margin: auto;
-    display: grid;
-}
-#account-settings-title{
-    color: var(--primary);
-    font-size: 20px;
-    font-weight: bolder;
-    padding: 10px 0px;
-}
-label{
-    padding: 5px;
-}
-#firstName,#lastName,#account-email,#account-password,#confirm-password{
-    border-color: var(--primary);
-    border-width: 2px;
-    border-style: solid;
-    padding: 10px;
-    font-size: 15px;
 }
 
-#button-div{
-    width: 100%;
-    display: inline-block;
+.changeName{
+    width: 200px;
+    font-size: 15px;
+    border-color: purple;
+    border-width: 2px;
+    border-style: solid;
+    color: var(--buttonTextColor);
+    background-color: purple;
+    margin-right: 10px;
     margin-top: 10px;
-}
-
-#save-changes-button{
-    width: 40%;
-    font-size: 15px;
-    border-color: var(--primary);
-    border-width: 2px;
-    border-style: solid;
-    color: var(--secondary);
-    background-color: var(--primary);
-    margin: auto;
     text-align: center;
     cursor: pointer;
 }
 
-#account-settings-cancel-button{
-    width: 40%;
+.changeEmail{
+    width: 200px;
     font-size: 15px;
-    border-color: var(--primary);
+    border-color: var(--secondary);
     border-width: 2px;
     border-style: solid;
-    color: var(--primary);
+    color: var(--buttonTextColor);
     background-color: var(--secondary);
-    margin: auto;
+    margin-right: 10px;
+    margin-top: 10px;
     text-align: center;
     cursor: pointer;
 }
 
-.error-div{
-    background-color: rgb(255, 80, 80);
-    color: white;
-    padding: 10px 10px;
+.changePassword{
+    width: 200px;
     font-size: 15px;
-    font-weight: bolder;
+    border-color: var(--tertiary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--buttonTextColor);
+    background-color: var(--tertiary);
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.goBack{
+    width: 200px;
+    font-size: 15px;
+    border-color: var(--primary);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--buttonTextColor);
+    background-color: var(--primary);
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
 }
